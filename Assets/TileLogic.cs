@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TileLogic : MonoBehaviour
 {
@@ -25,5 +26,17 @@ public class TileLogic : MonoBehaviour
         my_material_ = gameObject.GetComponent<Renderer>().material;
         Debug.Assert(my_material_ != null);
         CurState = State.Dead;
+    }
+
+    void OnMouseEnter() {
+        if (EventSystem.current.IsPointerOverGameObject()) {
+            return;
+        }
+
+        if (!Input.GetMouseButton(0)) {
+            return;
+        }
+
+        CurState = State.Alive;
     }
 }
