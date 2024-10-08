@@ -40,10 +40,6 @@ public class TileLogic : MonoBehaviour
     }
 
     void OnMouseEnter() {
-        if (EventSystem.current.IsPointerOverGameObject()) {
-            return;
-        }
-
         if (!Input.GetMouseButton(0)) {
             return;
         }

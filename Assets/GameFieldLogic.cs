@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public enum State {
@@ -11,8 +12,8 @@ public enum State {
 public class TilePlacer : MonoBehaviour
 {
     [SerializeField] public GameObject tile_prefab;
-    [SerializeField] public int gen_h_size = 2;
-    [SerializeField] public int gen_w_size = 2;
+    [SerializeField] public int gen_h_size;
+    [SerializeField] public int gen_w_size;
 
     public float physics_period = 1f /* secs */;
     private float time = 0.0f;
@@ -23,7 +24,7 @@ public class TilePlacer : MonoBehaviour
     private List<List<TileLogic>> tiles = new();
     private List<List<State>> next_state_tmp = new();
 
-    private bool running = true;
+    public bool running = false;
 
     // Start is called before the first frame update
     void Start()
@@ -100,10 +101,6 @@ public class TilePlacer : MonoBehaviour
                 tiles[h][w].CurState = next_state_tmp[h][w];
             }
         }
-    }
-
-    public void StartPauseGame() {
-        running = !running;
     }
 
     private State GetTileState(int h, int w) {
