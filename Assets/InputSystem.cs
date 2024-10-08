@@ -7,6 +7,7 @@ public class InputSystem : MonoBehaviour
 {
     TilePlacer field_object;
     GameObject help_menu;
+    CameraMove camera_ctl;
     private bool help_opened = true;
 
     private bool was_running_when_opened = false;
@@ -14,6 +15,7 @@ public class InputSystem : MonoBehaviour
     void Start() {
         field_object = GetComponent<TilePlacer>();
         help_menu = GameObject.Find("Help Canvas");
+        camera_ctl = GameObject.Find("Main Camera").GetComponent<CameraMove>();
     }
 
     void Update() {
@@ -36,9 +38,30 @@ public class InputSystem : MonoBehaviour
             return;
         }
 
+        /* Pause */
         if (Input.GetKeyDown(KeyCode.P))
         {
             field_object.running = !field_object.running;
+        }
+
+        /* Camera movements */
+        if (Input.GetKey(KeyCode.W)) {
+            camera_ctl.Move(Direction.Up, Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.A)) {
+            camera_ctl.Move(Direction.Left, Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.S)) {
+            camera_ctl.Move(Direction.Down, Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.D)) {
+            camera_ctl.Move(Direction.Right, Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.Q)) {
+            camera_ctl.Move(Direction.ZoomOut, Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.E)) {
+            camera_ctl.Move(Direction.ZoomIn, Time.deltaTime);
         }
     }
 }
