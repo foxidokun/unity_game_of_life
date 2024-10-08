@@ -11,17 +11,20 @@ public class TileLogic : MonoBehaviour
     Material my_material_;
     private State _cur_state;
     private int dead_phase = MAX_DEAD_PHASE;
+    private Color cell_color = new(); 
 
     public State CurState {
         get => _cur_state;
         set {
             _cur_state = value;
             if (value == State.Alive) {
-                my_material_.color = new Color(1.0f, 1.0f, 1.0f, 1);
+                cell_color.r = cell_color.g = cell_color.b = 1.0f;
+                my_material_.color = cell_color;
                 dead_phase = 0;
             } else if (value == State.Dead) {
-                float color_x = 0.01f + 0.6f * (MAX_DEAD_PHASE - dead_phase) / MAX_DEAD_PHASE;
-                my_material_.color = new Color(color_x, color_x, color_x, 1);
+                float color_val = 0.01f + 0.6f * (MAX_DEAD_PHASE - dead_phase) / MAX_DEAD_PHASE;
+                cell_color.r = cell_color.g = cell_color.b = color_val;
+                my_material_.color = cell_color;
 
                 if (dead_phase < MAX_DEAD_PHASE) dead_phase++;
             }
@@ -32,7 +35,7 @@ public class TileLogic : MonoBehaviour
     void Start()
     {
         my_material_ = gameObject.GetComponent<Renderer>().material;
-        Debug.Assert(my_material_ != null);
+        cell_color.a = 1;
         CurState = State.Dead;
     }
 
