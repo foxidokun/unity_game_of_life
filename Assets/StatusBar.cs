@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class StatusBar : MonoBehaviour
 {
+    /* References to other components */
     private TextMeshProUGUI statusbar;
     private UserLogic user_logic;
     private FieldLogic field_logic;

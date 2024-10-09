@@ -18,6 +18,7 @@ public class UserLogic : MonoBehaviour
     private const float ENDGAME_THRESHOLD = 500f;
 
     void Start() {
+        /* Update start points if status bar is initialized before us */
         FindObjectOfType<StatusBar>().UpdateStatusBar();
     }
 
@@ -66,6 +67,7 @@ public class UserLogic : MonoBehaviour
             points[new_state.user_id] += NEW_AWARD;
         }
     }
+
     public bool CheckEndGame() {
         for (byte i = 1; i <= 2; ++i ) {
             if (points[i] > ENDGAME_THRESHOLD) {

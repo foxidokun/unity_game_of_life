@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public enum Direction {
     Left,
@@ -16,8 +13,8 @@ public enum Direction {
 
 public class CameraMove : MonoBehaviour
 {
-    Transform camera_transform;
-    Vector3 cur_pos;
+    private Transform camera_transform;
+    private Vector3 cur_pos;
 
     private const float MAX_XZ = 32;
     private const float MIN_Y = 20;

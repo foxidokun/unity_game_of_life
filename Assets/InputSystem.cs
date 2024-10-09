@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class InputSystem : MonoBehaviour
 {
-    FieldLogic field_logic;
-    GameObject help_menu;
-    CameraMove camera_ctl;
-    StatusBar statusbar_ctl;
-    UserLogic user_ctl;
+    /* References to other components */
+    private FieldLogic field_logic;
+    private GameObject help_menu;
+    private CameraMove camera_ctl;
+    private StatusBar statusbar_ctl;
+    private UserLogic user_ctl;
     private bool help_opened = true;
 
     private bool was_running_when_opened = false;
