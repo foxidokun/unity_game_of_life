@@ -15,7 +15,7 @@ public class UserLogic : MonoBehaviour
     private const float NEW_AWARD = 0.2f;
     private const float STOLEN_AWARD = 1f;
     private const float KEEP_AWARD = 0.1f;
-    private const float ENDGAME_THRESHOLD = 500f;
+    private const float ENDGAME_THRESHOLD = 1000f;
 
     void Start() {
         /* Update start points if status bar is initialized before us */
