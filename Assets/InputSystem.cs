@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class InputSystem : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class InputSystem : MonoBehaviour
 
     void Update() {
         if (field_logic.finished) {
+            HandleCameraMoves();
             return;
         }
 
@@ -55,6 +57,31 @@ public class InputSystem : MonoBehaviour
         }
 
         /* Camera movements */
+        HandleCameraMoves();
+
+        /* Switch user */
+        if (Input.GetKeyDown(KeyCode.U)) {
+            user_ctl.SwitchUser();
+            statusbar_ctl.UpdateStatusBar();
+        }
+
+        /* Sim speed */
+        if (Input.GetKeyDown(KeyCode.Plus) || Input.GetKeyDown(KeyCode.Equals)) {
+            field_logic.SpeedUpSim();
+            statusbar_ctl.UpdateStatusBar();
+        }
+        if (Input.GetKeyDown(KeyCode.Minus)) {
+            field_logic.SlowDownSim();
+            statusbar_ctl.UpdateStatusBar();
+        }
+
+        /* Ending Game */
+        if (Input.GetKeyDown(KeyCode.End)) {
+            field_logic.EndGame();
+        }
+    }
+
+    void HandleCameraMoves() {
         if (Input.GetKey(KeyCode.W)) {
             camera_ctl.Move(Direction.Up, Time.deltaTime);
         }
@@ -72,22 +99,6 @@ public class InputSystem : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.E)) {
             camera_ctl.Move(Direction.ZoomIn, Time.deltaTime);
-        }
-
-        /* Switch user */
-        if (Input.GetKeyDown(KeyCode.U)) {
-            user_ctl.SwitchUser();
-            statusbar_ctl.UpdateStatusBar();
-        }
-
-        /* Sim speed */
-        if (Input.GetKeyDown(KeyCode.Plus) || Input.GetKeyDown(KeyCode.Equals)) {
-            field_logic.SpeedUpSim();
-            statusbar_ctl.UpdateStatusBar();
-        }
-        if (Input.GetKeyDown(KeyCode.Minus)) {
-            field_logic.SlowDownSim();
-            statusbar_ctl.UpdateStatusBar();
         }
     }
 }

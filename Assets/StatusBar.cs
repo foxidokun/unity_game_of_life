@@ -24,7 +24,11 @@ public class StatusBar : MonoBehaviour
     public void UpdateStatusBar()
     {
         if (field_logic.finished) {
-            statusbar.text = string.Format("User {0} won", user_logic.won_user);
+            if ( user_logic.won_user == 0) {
+                statusbar.text = string.Format("Equal Points");    
+            } else {
+                statusbar.text = string.Format("User {0} won", user_logic.won_user);
+            }
             return;
         }
 

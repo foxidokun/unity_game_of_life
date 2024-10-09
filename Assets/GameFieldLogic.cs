@@ -69,7 +69,6 @@ public class FieldLogic : MonoBehaviour
 
             if (running && !finished) {
                 UpdateField();
-                finished = user_logic.CheckEndGame();
                 statusbar.UpdateStatusBar();
                 RenderField();
             }
@@ -84,6 +83,12 @@ public class FieldLogic : MonoBehaviour
     public void SlowDownSim() {
         physics_period /= 1.1f;
         physics_period = Math.Max(physics_period, 0.05f);
+    }
+
+    public void EndGame() {
+        user_logic.EndGame();
+        finished = true;
+        statusbar.UpdateStatusBar();
     }
 
     private void UpdateField() {

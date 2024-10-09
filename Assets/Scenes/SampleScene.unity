@@ -405,7 +405,6 @@ MonoBehaviour:
   tile_prefab: {fileID: 963739765964062488, guid: a0b28e73a730b58a59bfac3a9069da07, type: 3}
   gen_h_size: 170
   gen_w_size: 230
-  physics_period: 1
 --- !u!4 &550658771
 Transform:
   m_ObjectHideFlags: 0
@@ -599,7 +598,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Help\n[F1] \u2014 Toggle current help\n[P] \u2014 Run / Pause simulation\n[WASD]
     \u2014 Move camera\n[QE] \u2014 Zoom in/out\n[U] \u2014 Change player\n[-=] \u2014
-    Change sim speed"
+    Change sim speed\n[End] \u2014 Finish game"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

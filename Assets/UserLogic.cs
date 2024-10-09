@@ -15,7 +15,6 @@ public class UserLogic : MonoBehaviour
     private const float NEW_AWARD = 0.2f;
     private const float STOLEN_AWARD = 1f;
     private const float KEEP_AWARD = 0.1f;
-    private const float ENDGAME_THRESHOLD = 1000f;
 
     void Start() {
         /* Update start points if status bar is initialized before us */
@@ -68,14 +67,12 @@ public class UserLogic : MonoBehaviour
         }
     }
 
-    public bool CheckEndGame() {
-        for (byte i = 1; i <= 2; ++i ) {
-            if (points[i] > ENDGAME_THRESHOLD) {
-                won_user = i;
-                return true;
-            }
+    public void EndGame() {
+        won_user = 0;
+        if (points[1] > points[2]) {
+            won_user = 1;
+        } else if (points[2] > points[1]) {
+            won_user = 2;
         }
-
-        return false;
     }
 }
