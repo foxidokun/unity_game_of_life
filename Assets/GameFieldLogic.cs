@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class FieldLogic : MonoBehaviour
 {
@@ -29,10 +25,12 @@ public class FieldLogic : MonoBehaviour
 
     public void SpeedUpSim() {
         physics_period *= 1.1f;
+        physics_period = Math.Min(physics_period, 3f);
     }
 
     public void SlowDownSim() {
         physics_period /= 1.1f;
+        physics_period = Math.Max(physics_period, 0.05f);
     }
 
     // Start is called before the first frame update
