@@ -444,7 +444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a7e4f8b69bd2c9bb00fe6c77c60e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cur_user: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,7 +596,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Help\n[F1] \u2014 Toggle current help\n[P] \u2014 Run / Pause simulation\n[WASD]
-    \u2014 Move camera\n[QE] \u2014 Zoom in/out"
+    \u2014 Move camera\n[QE] \u2014 Zoom in/out\n[U] \u2014 Change player"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -9,6 +9,7 @@ public class InputSystem : MonoBehaviour
     GameObject help_menu;
     CameraMove camera_ctl;
     StatusBar statusbar_ctl;
+    UserLogic user_ctl;
     private bool help_opened = true;
 
     private bool was_running_when_opened = false;
@@ -18,6 +19,7 @@ public class InputSystem : MonoBehaviour
         help_menu = GameObject.Find("Help Canvas");
         camera_ctl = FindObjectOfType<CameraMove>();
         statusbar_ctl = FindObjectOfType<StatusBar>();
+        user_ctl = FindObjectOfType<UserLogic>();
     }
 
     void Update() {
@@ -65,6 +67,12 @@ public class InputSystem : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.E)) {
             camera_ctl.Move(Direction.ZoomIn, Time.deltaTime);
+        }
+
+        /* Switch user */
+        if (Input.GetKeyDown(KeyCode.U)) {
+            user_ctl.SwitchUser();
+            statusbar_ctl.UpdateStatusBar();
         }
     }
 }

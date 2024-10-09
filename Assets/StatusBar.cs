@@ -20,9 +20,10 @@ public class StatusBar : MonoBehaviour
         UpdateStatusBar();
     }
 
-    public void UpdateStatusBar() {
-        string username = user_logic.cur_user == Users.User1 ? "User1" : "User2";
+    public void UpdateStatusBar()
+    {
         string sim_status = field_logic.running ? "running" : "paused";
-        statusbar.text = String.Format("[{0}] [Sim: {1}] ", username, sim_status);
+        statusbar.text = string.Format("[User: #{0}] [Sim: {1}] [Points: {2:0} vs {3:0}]",
+            user_logic.cur_user, sim_status, user_logic.points[1], user_logic.points[2]);
     }
 }
