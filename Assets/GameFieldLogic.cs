@@ -9,13 +9,13 @@ public enum State {
     Dead
 }
 
-public class TilePlacer : MonoBehaviour
+public class FieldLogic : MonoBehaviour
 {
     [SerializeField] public GameObject tile_prefab;
     [SerializeField] public int gen_h_size;
     [SerializeField] public int gen_w_size;
 
-    public float physics_period = 1f /* secs */;
+    private float physics_period = 1f /* secs */;
     private float time = 0.0f;
 
     private int h_count = 0;
@@ -24,7 +24,7 @@ public class TilePlacer : MonoBehaviour
     private List<List<TileLogic>> tiles = new();
     private List<List<State>> next_state_tmp = new();
 
-    public bool running = false;
+    [NonSerialized] public bool running = false;
 
     // Start is called before the first frame update
     void Start()

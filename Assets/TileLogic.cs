@@ -12,7 +12,9 @@ public class TileLogic : MonoBehaviour
     private State _cur_state;
     private int dead_phase = MAX_DEAD_PHASE;
     private Color cell_color = new(); 
+    private FieldLogic field_logic;
 
+    public Users owner = Users.User1;
     public State CurState {
         get => _cur_state;
         set {
@@ -37,10 +39,11 @@ public class TileLogic : MonoBehaviour
         my_material_ = gameObject.GetComponent<Renderer>().material;
         cell_color.a = 1;
         CurState = State.Dead;
+        field_logic = GameObject.Find("Script Runner").GetComponent<FieldLogic>();
     }
 
     void OnMouseEnter() {
-        if (!Input.GetMouseButton(0)) {
+        if (!Input.GetMouseButton(0) || field_logic.running) {
             return;
         }
 

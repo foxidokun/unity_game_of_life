@@ -5,17 +5,19 @@ using UnityEngine;
 
 public class InputSystem : MonoBehaviour
 {
-    TilePlacer field_object;
+    FieldLogic field_logic;
     GameObject help_menu;
     CameraMove camera_ctl;
+    StatusBar statusbar_ctl;
     private bool help_opened = true;
 
     private bool was_running_when_opened = false;
 
     void Start() {
-        field_object = GetComponent<TilePlacer>();
+        field_logic = GetComponent<FieldLogic>();
         help_menu = GameObject.Find("Help Canvas");
-        camera_ctl = GameObject.Find("Main Camera").GetComponent<CameraMove>();
+        camera_ctl = FindObjectOfType<CameraMove>();
+        statusbar_ctl = FindObjectOfType<StatusBar>();
     }
 
     void Update() {
@@ -24,11 +26,11 @@ public class InputSystem : MonoBehaviour
             help_opened = !help_opened;
 
             if (help_opened) {
-                was_running_when_opened = field_object.running;
-                field_object.running = false;
+                was_running_when_opened = field_logic.running;
+                field_logic.running = false;
                 help_menu.SetActive(true);
             } else {
-                field_object.running = was_running_when_opened;
+                field_logic.running = was_running_when_opened;
                 help_menu.SetActive(false);
             }
         }
@@ -41,7 +43,8 @@ public class InputSystem : MonoBehaviour
         /* Pause */
         if (Input.GetKeyDown(KeyCode.P))
         {
-            field_object.running = !field_object.running;
+            field_logic.running = !field_logic.running;
+            statusbar_ctl.UpdateStatusBar();
         }
 
         /* Camera movements */

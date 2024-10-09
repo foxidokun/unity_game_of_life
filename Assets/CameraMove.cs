@@ -28,9 +28,8 @@ public class CameraMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject camera = GameObject.Find("Main Camera");
-        camera_transform = camera.transform;
-        cur_pos = camera.transform.localPosition;
+        camera_transform = gameObject.transform;
+        cur_pos = gameObject.transform.localPosition;
     }
 
     public void Move(Direction direction, float delta_time) {
