@@ -12,7 +12,7 @@ public class FieldLogic : MonoBehaviour
     [SerializeField] public int gen_h_size;
     [SerializeField] public int gen_w_size;
 
-    private float physics_period = 1f /* secs */;
+    public float physics_period = 1f /* secs */;
     private float time = 0.0f;
 
     private int h_count = 0;
@@ -25,6 +25,15 @@ public class FieldLogic : MonoBehaviour
     private UserLogic user_logic;
 
     [NonSerialized] public bool running = false;
+    [NonSerialized] public bool finished = false;
+
+    public void SpeedUpSim() {
+        physics_period *= 1.1f;
+    }
+
+    public void SlowDownSim() {
+        physics_period /= 1.1f;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -63,8 +72,9 @@ public class FieldLogic : MonoBehaviour
         if (time >= physics_period) {
             time -= physics_period;
 
-            if (running) {
+            if (running && !finished) {
                 UpdateField();
+                finished = user_logic.CheckEndGame();
                 statusbar.UpdateStatusBar();
                 RenderField();
             }
@@ -122,7 +132,7 @@ public class FieldLogic : MonoBehaviour
         }
     }
 
-    void RenderField() {
+    private void RenderField() {
         /* For each cell ... */
         for (int h = 0; h < h_count; ++h) {
             for (int w = 0; w < w_count; ++w) {

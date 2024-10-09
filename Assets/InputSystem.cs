@@ -23,6 +23,10 @@ public class InputSystem : MonoBehaviour
     }
 
     void Update() {
+        if (field_logic.finished) {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.F1))
         {
             help_opened = !help_opened;
@@ -72,6 +76,16 @@ public class InputSystem : MonoBehaviour
         /* Switch user */
         if (Input.GetKeyDown(KeyCode.U)) {
             user_ctl.SwitchUser();
+            statusbar_ctl.UpdateStatusBar();
+        }
+
+        /* Sim speed */
+        if (Input.GetKeyDown(KeyCode.Plus) || Input.GetKeyDown(KeyCode.Equals)) {
+            field_logic.SpeedUpSim();
+            statusbar_ctl.UpdateStatusBar();
+        }
+        if (Input.GetKeyDown(KeyCode.Minus)) {
+            field_logic.SlowDownSim();
             statusbar_ctl.UpdateStatusBar();
         }
     }

@@ -39,7 +39,7 @@ public class TileLogic : MonoBehaviour
     }
 
     void HandleMouseInput() {
-        if (!Input.GetMouseButton(0) || field_logic.running) {
+        if (!Input.GetMouseButton(0) || field_logic.running || field_logic.finished) {
             return;
         }
 

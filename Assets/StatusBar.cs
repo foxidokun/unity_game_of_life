@@ -22,8 +22,13 @@ public class StatusBar : MonoBehaviour
 
     public void UpdateStatusBar()
     {
+        if (field_logic.finished) {
+            statusbar.text = string.Format("User {0} won", user_logic.won_user);
+            return;
+        }
+
         string sim_status = field_logic.running ? "running" : "paused";
-        statusbar.text = string.Format("[User: #{0}] [Sim: {1}] [Points: {2:0} vs {3:0}]",
-            user_logic.cur_user, sim_status, user_logic.points[1], user_logic.points[2]);
+        statusbar.text = string.Format("[User: #{0}] [Sim: {1}] [Points: {2:0} vs {3:0}] [Simulate speed: {4:##.##} secs/tick]",
+            user_logic.cur_user, sim_status, user_logic.points[1], user_logic.points[2], field_logic.physics_period);
     }
 }
